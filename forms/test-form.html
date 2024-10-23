@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPay Service Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], input[type="email"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>SmartPay Service Form</h1>
+
+    <form>
+
+        <!-- Personal Details Section -->
+        <div class="form-section">
+            <label for="name">Credit Card Member's Name (Mr./Ms.)</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="email">Email ID (Mandatory for LIC)</label>
+            <input type="email" id="email" name="email">
+
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" name="mobile" required>
+
+            <label for="bank_acc">HDFC Bank A/c No.</label>
+            <input type="text" id="bank_acc" name="bank_acc">
+        </div>
+
+        <!-- Credit Card Details Section -->
+        <div class="form-section">
+            <label for="credit_card">Credit Card Number</label>
+            <input type="text" id="credit_card" name="credit_card" required>
+        </div>
+
+        <!-- Additional Services Section -->
+        <h2>My SmartPay Service</h2>
+        <table>
+            <tr>
+                <th>Name of the Company</th>
+                <th>City</th>
+                <th>Details 1 (Reference 1)</th>
+                <th>Details 2 (Reference 2)</th>
+                <th>Details 3 (Reference 3)</th>
+                <th>Third Party</th>
+                <th>Case No.</th>
+            </tr>
+            <tr>
+                <td>Telephone</td>
+                <td><input type="text" name="telephone_city"></td>
+                <td><input type="text" name="telephone_details1"></td>
+                <td><input type="text" name="telephone_details2"></td>
+                <td><input type="text" name="telephone_details3"></td>
+                <td><input type="checkbox" name="telephone_thirdparty"></td>
+                <td><input type="text" name="telephone_case"></td>
+            </tr>
+            <tr>
+                <td>Electricity</td>
+                <td><input type="text" name="electricity_city"></td>
+                <td><input type="text" name="electricity_details1"></td>
+                <td><input type="text" name="electricity_details2"></td>
+                <td><input type="text" name="electricity_details3"></td>
+                <td><input type="checkbox" name="electricity_thirdparty"></td>
+                <td><input type="text" name="electricity_case"></td>
+            </tr>
+            <tr>
+                <td>Mobile Co 1</td>
+                <td><input type="text" name="mobile1_city"></td>
+                <td><input type="text" name="mobile1_details1"></td>
+                <td><input type="text" name="mobile1_details2"></td>
+                <td><input type="text" name="mobile1_details3"></td>
+                <td><input type="checkbox" name="mobile1_thirdparty"></td>
+                <td><input type="text" name="mobile1_case"></td>
+            </tr>
+            <!-- Repeat for each row as per the form -->
+            <tr>
+                <td>Mobile Co 2</td>
+                <td><input type="text" name="mobile2_city"></td>
+                <td><input type="text" name="mobile2_details1"></td>
+                <td><input type="text" name="mobile2_details2"></td>
+                <td><input type="text" name="mobile2_details3"></td>
+                <td><input type="checkbox" name="mobile2_thirdparty"></td>
+                <td><input type="text" name="mobile2_case"></td>
+            </tr>
+            <tr>
+                <td>Mobile Co 3</td>
+                <td><input type="text" name="mobile3_city"></td>
+                <td><input type="text" name="mobile3_details1"></td>
+                <td><input type="text" name="mobile3_details2"></td>
+                <td><input type="text" name="mobile3_details3"></td>
+                <td><input type="checkbox" name="mobile3_thirdparty"></td>
+                <td><input type="text" name="mobile3_case"></td>
+            </tr>
+            <tr>
+                <td>Insurance Co 1</td>
+                <td><input type="text" name="insurance1_city"></td>
+                <td><input type="text" name="insurance1_details1"></td>
+                <td><input type="text" name="insurance1_details2"></td>
+                <td><input type="text" name="insurance1_details3"></td>
+                <td><input type="checkbox" name="insurance1_thirdparty"></td>
+                <td><input type="text" name="insurance1_case"></td>
+            </tr>
+            <!-- Add similar rows for other services like GAS, Water, etc. -->
+        </table>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+
+</body>
+</html>

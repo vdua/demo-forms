@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic SmartPay Service Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Dynamic SmartPay Service Form</h1>
+
+    <form>
+
+        <!-- Personal Details Section -->
+        <div class="form-section">
+            <label for="name">Credit Card Member's Name (Mr./Ms.)</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="email">Email ID (Mandatory for LIC)</label>
+            <input type="email" id="email" name="email">
+
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" name="mobile" required>
+
+            <label for="bank_acc">HDFC Bank A/c No.</label>
+            <input type="text" id="bank_acc" name="bank_acc">
+        </div>
+
+        <!-- Credit Card Details Section -->
+        <div class="form-section">
+            <label for="credit_card">Credit Card Number</label>
+            <input type="text" id="credit_card" name="credit_card" required>
+        </div>
+
+        <!-- Additional Services Section -->
+        <h2>My SmartPay Service</h2>
+        <table id="serviceTable">
+            <thead>
+                <tr>
+                    <th>Name of the Company</th>
+                    <th>City</th>
+                    <th>Details 1 (Reference 1)</th>
+                    <th>Details 2 (Reference 2)</th>
+                    <th>Details 3 (Reference 3)</th>
+                    <th>Third Party</th>
+                    <th>Case No.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select name="service_name[]">
+                            <option value="Telephone">Telephone</option>
+                            <option value="Electricity">Electricity</option>
+                            <option value="Mobile Co 1">Mobile Co 1</option>
+                            <option value="Mobile Co 2">Mobile Co 2</option>
+                            <option value="Insurance Co 1">Insurance Co 1</option>
+                            <option value="GAS">GAS</option>
+                            <option value="Water">Water</option>
+                        </select>
+                    </td>
+                    <td><input type="text" name="city[]"></td>
+                    <td><input type="text" name="details1[]"></td>
+                    <td><input type="text" name="details2[]"></td>
+                    <td><input type="text" name="details3[]"></td>
+                    <td><input type="checkbox" name="third_party[]"></td>
+                    <td><input type="text" name="case_no[]"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" onclick="addRow()">Add Another Service</button>
+
+        <br><br>
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+
+<script>
+    function addRow() {
+        // Get the table body element
+        var table = document.getElementById("serviceTable").getElementsByTagName('tbody')[0];
+
+        // Create a new row
+        var newRow = table.insertRow();
+
+        // Create dropdown cell for service name
+        var cell1 = newRow.insertCell(0);
+        var select = document.createElement("select");
+        select.name = "service_name[]";
+        select.innerHTML = `
+            <option value="Telephone">Telephone</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Mobile Co 1">Mobile Co 1</option>
+            <option value="Mobile Co 2">Mobile Co 2</option>
+            <option value="Insurance Co 1">Insurance Co 1</option>
+            <option value="GAS">GAS</option>
+            <option value="Water">Water</option>
+        `;
+        cell1.appendChild(select);
+
+        // Create input fields for the remaining columns
+        var cell2 = newRow.insertCell(1);
+        var inputCity = document.createElement("input");
+        inputCity.type = "text";
+        inputCity.name = "city[]";
+        cell2.appendChild(inputCity);
+
+        var cell3 = newRow.insertCell(2);
+        var inputDetails1 = document.createElement("input");
+        inputDetails1.type = "text";
+        inputDetails1.name = "details1[]";
+        cell3.appendChild(inputDetails1);
+
+        var cell4 = newRow.insertCell(3);
+        var inputDetails2 = document.createElement("input");
+        inputDetails2.type = "text";
+        inputDetails2.name = "details2[]";
+        cell4.appendChild(inputDetails2);
+
+        var cell5 = newRow.insertCell(4);
+        var inputDetails3 = document.createElement("input");
+        inputDetails3.type = "text";
+        inputDetails3.name = "details3[]";
+        cell5.appendChild(inputDetails3);
+
+        var cell6 = newRow.insertCell(5);
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.name = "third_party[]";
+        cell6.appendChild(checkbox);
+
+        var cell7 = newRow.insertCell(6);
+        var inputCaseNo = document.createElement("input");
+        inputCaseNo.type = "text";
+        inputCaseNo.name = "case_no[]";
+        cell7.appendChild(inputCaseNo);
+    }
+</script>
+
+</body>
+</html>

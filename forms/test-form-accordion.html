@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic SmartPay Service Form with Accordion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .accordion {
+            background-color: #f2f2f2;
+            color: #444;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            transition: 0.4s;
+            margin-bottom: 10px;
+        }
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Dynamic SmartPay Service Form</h1>
+
+    <form>
+        <!-- Personal Details Section -->
+        <div class="form-section">
+            <label for="name">Credit Card Member's Name (Mr./Ms.)</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="email">Email ID (Mandatory for LIC)</label>
+            <input type="email" id="email" name="email">
+
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" name="mobile" required>
+
+            <label for="bank_acc">HDFC Bank A/c No.</label>
+            <input type="text" id="bank_acc" name="bank_acc">
+        </div>
+
+        <!-- Credit Card Details Section -->
+        <div class="form-section">
+            <label for="credit_card">Credit Card Number</label>
+            <input type="text" id="credit_card" name="credit_card" required>
+        </div>
+
+        <!-- Additional Services Accordion -->
+        <h2>My SmartPay Service</h2>
+        <div id="accordion-container">
+            <button type="button" class="accordion">Service 1</button>
+            <div class="panel">
+                <div class="form-section">
+                    <label for="service_name">Name of the Company</label>
+                    <select name="service_name[]">
+                        <option value="Telephone">Telephone</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Mobile Co 1">Mobile Co 1</option>
+                        <option value="Mobile Co 2">Mobile Co 2</option>
+                        <option value="Insurance Co 1">Insurance Co 1</option>
+                        <option value="GAS">GAS</option>
+                        <option value="Water">Water</option>
+                    </select>
+
+                    <label for="city">City</label>
+                    <input type="text" name="city[]">
+
+                    <label for="details1">Details 1 (Reference 1)</label>
+                    <input type="text" name="details1[]">
+
+                    <label for="details2">Details 2 (Reference 2)</label>
+                    <input type="text" name="details2[]">
+
+                    <label for="details3">Details 3 (Reference 3)</label>
+                    <input type="text" name="details3[]">
+
+                    <label for="third_party">Third Party</label>
+                    <input type="checkbox" name="third_party[]">
+
+                    <label for="case_no">Case No.</label>
+                    <input type="text" name="case_no[]">
+                </div>
+            </div>
+        </div>
+
+        <button type="button" onclick="addAccordion()">Add Another Service</button>
+
+        <br><br>
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+
+<script>
+    // Function to handle accordion behavior
+    var acc = document.getElementsByClassName("accordion");
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+
+    // Function to dynamically add new accordion sections
+    function addAccordion() {
+        var container = document.getElementById('accordion-container');
+
+        // Create new accordion button
+        var newAccordion = document.createElement('button');
+        newAccordion.classList.add('accordion');
+        newAccordion.type = "button";
+        newAccordion.innerText = 'Service ' + (document.getElementsByClassName('accordion').length + 1);
+        container.appendChild(newAccordion);
+
+        // Create new panel section
+        var newPanel = document.createElement('div');
+        newPanel.classList.add('panel');
+        newPanel.innerHTML = `
+            <div class="form-section">
+                <label for="service_name">Name of the Company</label>
+                <select name="service_name[]">
+                    <option value="Telephone">Telephone</option>
+                    <option value="Electricity">Electricity</option>
+                    <option value="Mobile Co 1">Mobile Co 1</option>
+                    <option value="Mobile Co 2">Mobile Co 2</option>
+                    <option value="Insurance Co 1">Insurance Co 1</option>
+                    <option value="GAS">GAS</option>
+                    <option value="Water">Water</option>
+                </select>
+
+                <label for="city">City</label>
+                <input type="text" name="city[]">
+
+                <label for="details1">Details 1 (Reference 1)</label>
+                <input type="text" name="details1[]">
+
+                <label for="details2">Details 2 (Reference 2)</label>
+                <input type="text" name="details2[]">
+
+                <label for="details3">Details 3 (Reference 3)</label>
+                <input type="text" name="details3[]">
+
+                <label for="third_party">Third Party</label>
+                <input type="checkbox" name="third_party[]">
+
+                <label for="case_no">Case No.</label>
+                <input type="text" name="case_no[]">
+            </div>
+        `;
+        container.appendChild(newPanel);
+
+        // Attach event listener to the new accordion
+        newAccordion.addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
